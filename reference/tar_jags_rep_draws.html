@@ -436,166 +436,31 @@ Suppressed if <code>combine</code> is <code>FALSE</code>.</p></li>
 are forwarded to these functions.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># First, write your JAGS model file. Example:</span>
-<span class='co'># tar_jags_example_file() # Writes jagstargets_example.jags</span>
-<span class='co'># Then in _targets.R, write the pipeline:</span>
+    <pre class="examples"><div class='input'><span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_dir.html'>tar_dir</a></span><span class='op'>(</span><span class='op'>{</span>
+<span class='fu'><a href='tar_jags_example_file.html'>tar_jags_example_file</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_script.html'>tar_script</a></span><span class='op'>(</span><span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://wlandau.github.io/jagstargets/'>jagstargets</a></span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
   <span class='fu'>tar_jags_rep_draws</span><span class='op'>(</span>
     <span class='va'>your_model</span>,
     jags_files <span class='op'>=</span> <span class='st'>"jagstargets_example.jags"</span>,
-    data <span class='op'>=</span> <span class='fu'><a href='tar_jags_example_data.html'>tar_jags_example_data</a></span><span class='op'>(</span><span class='op'>)</span>,
+    data <span class='op'>=</span> <span class='fu'><a href='tar_jags_example_data.html'>tar_jags_example_data</a></span><span class='op'>(</span>true_params <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,
     parameters.to.save <span class='op'>=</span> <span class='st'>"beta"</span>,
-    batches <span class='op'>=</span> <span class='fl'>40</span>,
-    reps <span class='op'>=</span> <span class='fl'>25</span>
+    batches <span class='op'>=</span> <span class='fl'>2</span>,
+    reps <span class='op'>=</span> <span class='fl'>2</span>
   <span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; [[1]]
-#&gt; [[1]]$your_model_file_jagstargets_example
-#&gt; &lt;stem target&gt; 
-#&gt;   name: your_model_file_jagstargets_example 
-#&gt;   command:
-#&gt;     "jagstargets_example.jags" 
-#&gt;   format: file 
-#&gt;   iteration method: vector 
-#&gt;   error mode: stop 
-#&gt;   memory mode: transient 
-#&gt;   storage mode: main 
-#&gt;   retrieval mode: main 
-#&gt;   deploy to: main 
-#&gt;   resources:
-#&gt;     list() 
-#&gt;   cue:
-#&gt;     mode: thorough
-#&gt;     command: TRUE
-#&gt;     depend: TRUE
-#&gt;     format: TRUE
-#&gt;     iteration: TRUE
-#&gt;     file: TRUE 
-#&gt;   packages:
-#&gt;     character(0) 
-#&gt;   library:
-#&gt;     NULL
-#&gt; [[1]]$your_model_lines_jagstargets_example
-#&gt; &lt;stem target&gt; 
-#&gt;   name: your_model_lines_jagstargets_example 
-#&gt;   command:
-#&gt;     readLines(con = your_model_file_jagstargets_example) 
-#&gt;   format: rds 
-#&gt;   iteration method: vector 
-#&gt;   error mode: stop 
-#&gt;   memory mode: transient 
-#&gt;   storage mode: main 
-#&gt;   retrieval mode: main 
-#&gt;   deploy to: main 
-#&gt;   resources:
-#&gt;     list() 
-#&gt;   cue:
-#&gt;     mode: thorough
-#&gt;     command: TRUE
-#&gt;     depend: TRUE
-#&gt;     format: TRUE
-#&gt;     iteration: TRUE
-#&gt;     file: TRUE 
-#&gt;   packages:
-#&gt;     character(0) 
-#&gt;   library:
-#&gt;     NULL
-#&gt; [[1]]$your_model_jagstargets_example
-#&gt; &lt;pattern target&gt; 
-#&gt;   name: your_model_jagstargets_example 
-#&gt;   command:
-#&gt;     jagstargets::tar_jags_rep_run(jags_lines = your_model_lines_jagstargets_example, 
-#&gt;         jags_name = "jagstargets_example", jags_file = "jagstargets_example.jags", 
-#&gt;         parameters.to.save = "beta", data = your_model_data, data_copy = character(0), 
-#&gt;         data_omit = character(0), variables = NULL, summaries = NULL, 
-#&gt;         summary_args = NULL, reps = 25, output = "draws", n.cluster = 1, 
-#&gt;         n.chains = 3, n.iter = 2000, n.burnin = 1000L, n.thin = 1, 
-#&gt;         jags.module = c("glm", "dic"), inits = NULL, RNGname = c("Wichmann-Hill", 
-#&gt;         "Marsaglia-Multicarry", "Super-Duper", "Mersenne-Twister"
-#&gt;         ), jags.seed = 123, quiet = TRUE, progress.bar = "text", 
-#&gt;         refresh = 0) 
-#&gt;   pattern:
-#&gt;     map(your_model_data) 
-#&gt;   format: fst_tbl 
-#&gt;   iteration method: vector 
-#&gt;   error mode: stop 
-#&gt;   memory mode: transient 
-#&gt;   storage mode: main 
-#&gt;   retrieval mode: main 
-#&gt;   deploy to: worker 
-#&gt;   resources:
-#&gt;     list() 
-#&gt;   cue:
-#&gt;     mode: thorough
-#&gt;     command: TRUE
-#&gt;     depend: TRUE
-#&gt;     format: TRUE
-#&gt;     iteration: TRUE
-#&gt;     file: TRUE 
-#&gt;   packages:
-#&gt;     character(0) 
-#&gt;   library:
-#&gt;     NULL
-#&gt; [[1]]$your_model_data
-#&gt; &lt;pattern target&gt; 
-#&gt;   name: your_model_data 
-#&gt;   command:
-#&gt;     purrr::map(seq_len(25), ~tar_jags_example_data()) 
-#&gt;   pattern:
-#&gt;     map(your_model_batch) 
-#&gt;   format: qs 
-#&gt;   iteration method: list 
-#&gt;   error mode: stop 
-#&gt;   memory mode: transient 
-#&gt;   storage mode: main 
-#&gt;   retrieval mode: main 
-#&gt;   deploy to: worker 
-#&gt;   resources:
-#&gt;     list() 
-#&gt;   cue:
-#&gt;     mode: thorough
-#&gt;     command: TRUE
-#&gt;     depend: TRUE
-#&gt;     format: TRUE
-#&gt;     iteration: TRUE
-#&gt;     file: TRUE 
-#&gt;   packages:
-#&gt;     jagstargets
-#&gt;     stats
-#&gt;     graphics
-#&gt;     grDevices
-#&gt;     utils
-#&gt;     datasets
-#&gt;     methods
-#&gt;     base 
-#&gt;   library:
-#&gt;     NULL
-#&gt; [[1]]$your_model_batch
-#&gt; &lt;stem target&gt; 
-#&gt;   name: your_model_batch 
-#&gt;   command:
-#&gt;     seq_len(40) 
-#&gt;   format: rds 
-#&gt;   iteration method: vector 
-#&gt;   error mode: stop 
-#&gt;   memory mode: transient 
-#&gt;   storage mode: main 
-#&gt;   retrieval mode: main 
-#&gt;   deploy to: main 
-#&gt;   resources:
-#&gt;     list() 
-#&gt;   cue:
-#&gt;     mode: thorough
-#&gt;     command: TRUE
-#&gt;     depend: TRUE
-#&gt;     format: TRUE
-#&gt;     iteration: TRUE
-#&gt;     file: TRUE 
-#&gt;   packages:
-#&gt;     character(0) 
-#&gt;   library:
-#&gt;     NULL
-#&gt; </div></pre>
+<span class='op'>}</span><span class='op'>)</span>
+<span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_make.html'>tar_make</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_batch
+#&gt; ● run target your_model_file_jagstargets_example
+#&gt; ● run branch your_model_data_7b1b1358
+#&gt; ● run branch your_model_data_7b6d503e
+#&gt; ● run target your_model_lines_jagstargets_example
+#&gt; ● run branch your_model_jagstargets_example_24769822
+#&gt; ● run branch your_model_jagstargets_example_4e151279
+#&gt; </span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
