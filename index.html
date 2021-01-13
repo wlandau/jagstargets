@@ -132,7 +132,7 @@
 <p>First, write a <a href="https://wlandau.github.io/targets-manual/walkthrough.html"><code>_targets.R</code> file</a> that loads your packages, defines a function to generate JAGS data, and lists a pipeline of targets. The target list can call target factories like <a href="https://wlandau.github.io/jagstargets/reference/tar_jags.html"><code>tar_jags()</code></a> as well as ordinary targets with <a href="https://wlandau.github.io/targets/reference/tar_target.html"><code>tar_target()</code></a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># _targets.R</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wlandau.github.io/targets/">targets</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/targets/">targets</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wlandau.github.io/jagstargets/">jagstargets</a></span><span class="op">)</span>
 
 <span class="va">generate_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
