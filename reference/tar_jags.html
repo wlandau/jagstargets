@@ -438,13 +438,16 @@ are forwarded to these functions.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_dir.html'>tar_dir</a></span><span class='op'>(</span><span class='op'>{</span>
-<span class='fu'><a href='tar_jags_example_file.html'>tar_jags_example_file</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_script.html'>tar_script</a></span><span class='op'>(</span><span class='op'>{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://wlandau.github.io/jagstargets/'>jagstargets</a></span><span class='op'>)</span>
+<span class='co'># Do not use a temp file for a real project</span>
+<span class='co'># or else your targets will always rerun.</span>
+<span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='tar_jags_example_file.html'>tar_jags_example_file</a></span><span class='op'>(</span><span class='va'>tmp</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
   <span class='fu'>tar_jags</span><span class='op'>(</span>
     <span class='va'>your_model</span>,
-    jags_files <span class='op'>=</span> <span class='st'>"jagstargets_example.jags"</span>,
+    jags_files <span class='op'>=</span> <span class='va'>tmp</span>,
     data <span class='op'>=</span> <span class='fu'><a href='tar_jags_example_data.html'>tar_jags_example_data</a></span><span class='op'>(</span>true_params <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,
     parameters.to.save <span class='op'>=</span> <span class='st'>"beta"</span>,
     log <span class='op'>=</span> <span class='fu'>R.utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/R.utils/man/nullfile.html'>nullfile</a></span><span class='op'>(</span><span class='op'>)</span>
@@ -453,13 +456,13 @@ are forwarded to these functions.</p>
 <span class='op'>}</span>, ask <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_make.html'>tar_make</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_data
-#&gt; ● run target your_model_file_jagstargets_example
-#&gt; ● run target your_model_lines_jagstargets_example
-#&gt; ● run target your_model_mcmc_jagstargets_example
-#&gt; ● run target your_model_draws_jagstargets_example
-#&gt; ● run target your_model_dic_jagstargets_example
-#&gt; ● run target your_model_summary_jagstargets_example
+</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_file_file8ea2266412d
+#&gt; ● run target your_model_data
+#&gt; ● run target your_model_lines_file8ea2266412d
+#&gt; ● run target your_model_mcmc_file8ea2266412d
+#&gt; ● run target your_model_draws_file8ea2266412d
+#&gt; ● run target your_model_dic_file8ea2266412d
+#&gt; ● run target your_model_summary_file8ea2266412d
 #&gt; ● end pipeline
 #&gt; </span><span></div></span></pre>
   </div>
