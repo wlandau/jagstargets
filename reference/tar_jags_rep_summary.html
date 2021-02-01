@@ -465,7 +465,7 @@ to learn about the structure and composition of target objects.</p>
 are forwarded to these functions.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_dir.html'>tar_dir</a></span><span class='op'>(</span><span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_dir.html'>tar_dir</a></span><span class='op'>(</span><span class='op'>{</span> <span class='co'># tar_dir() runs code from a temporary directory.</span>
 <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_script.html'>tar_script</a></span><span class='op'>(</span><span class='op'>{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://wlandau.github.io/jagstargets/'>jagstargets</a></span><span class='op'>)</span>
 <span class='co'># Do not use a temp file for a real project</span>
@@ -486,13 +486,13 @@ are forwarded to these functions.</p>
 <span class='op'>}</span>, ask <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_make.html'>tar_make</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_file_file92f59947485
+</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_file_filea58314ad366
 #&gt; ● run target your_model_batch
-#&gt; ● run target your_model_lines_file92f59947485
+#&gt; ● run target your_model_lines_filea58314ad366
 #&gt; ● run branch your_model_data_7b1b1358
 #&gt; ● run branch your_model_data_7b6d503e
-#&gt; ● run branch your_model_file92f59947485_24769822
-#&gt; ● run branch your_model_file92f59947485_4e151279
+#&gt; ● run branch your_model_filea58314ad366_24769822
+#&gt; ● run branch your_model_filea58314ad366_4e151279
 #&gt; ● run target your_model
 #&gt; ● end pipeline
 #&gt; </span><span></div></span></pre>
