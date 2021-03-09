@@ -48,7 +48,10 @@
 
 <meta property="og:title" content="Example data for tar_jags_example_file() — tar_jags_example_data" />
 <meta property="og:description" content="An example dataset compatible with the model file
-from tar_jags_example_file()." />
+from tar_jags_example_file(). The output has a .join_data
+element so the true value of beta from the simulation
+is automatically appended to the beta rows of the
+summary output." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -89,7 +92,7 @@ from tar_jags_example_file()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">jagstargets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
       </span>
     </div>
 
@@ -147,10 +150,13 @@ from tar_jags_example_file()." />
 
     <div class="ref-description">
     <p>An example dataset compatible with the model file
-from <code><a href='tar_jags_example_file.html'>tar_jags_example_file()</a></code>.</p>
+from <code><a href='tar_jags_example_file.html'>tar_jags_example_file()</a></code>. The output has a <code>.join_data</code>
+element so the true value of <code>beta</code> from the simulation
+is automatically appended to the <code>beta</code> rows of the
+summary output.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tar_jags_example_data</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10L</span>, true_params <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>tar_jags_example_data</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10L</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,17 +165,15 @@ from <code><a href='tar_jags_example_file.html'>tar_jags_example_file()</a></cod
       <th>n</th>
       <td><p>Integer of length 1, number of data points.</p></td>
     </tr>
-    <tr>
-      <th>true_params</th>
-      <td><p>Logical, whether to include the true values of
-the parameters used to simulate the data.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>List, dataset compatible with the model file from
-<code><a href='tar_jags_example_file.html'>tar_jags_example_file()</a></code>.</p>
+<code><a href='tar_jags_example_file.html'>tar_jags_example_file()</a></code>. The output has a <code>.join_data</code>
+element so the true value of <code>beta</code> from the simulation
+is automatically appended to the <code>beta</code> rows of the
+summary output.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>tar_jags_example_data</span><span class='op'>(</span><span class='op'>)</span>
@@ -184,8 +188,10 @@ the parameters used to simulate the data.</p></td>
 #&gt;  [1] -0.2709939  0.8488641  2.2220835 -1.5367543  0.5438387 -1.8944232
 #&gt;  [7] -0.6162477 -0.2096605  0.3231143 -1.1967803
 #&gt; 
-#&gt; $true_beta
+#&gt; $.join_data
+#&gt; $.join_data$beta
 #&gt; [1] -0.2827054
+#&gt; 
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

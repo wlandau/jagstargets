@@ -90,7 +90,7 @@ for each run." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">jagstargets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
       </span>
     </div>
 
@@ -157,8 +157,6 @@ for each run.</p>
   <span class='va'>jags_files</span>,
   <span class='va'>parameters.to.save</span>,
   data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  data_copy <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
-  data_omit <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
   variables <span class='op'>=</span> <span class='cn'>NULL</span>,
   summaries <span class='op'>=</span> <span class='cn'>NULL</span>,
   summary_args <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -216,22 +214,10 @@ the suffixed will come from <code><a href='https://rdrr.io/r/base/names.html'>na
     </tr>
     <tr>
       <th>data</th>
-      <td><p>Code to generate the <code>data</code> for the JAGS model.</p></td>
-    </tr>
-    <tr>
-      <th>data_copy</th>
-      <td><p>Character vector of names of scalars in <code>data</code>.
-These values will be inserted as columns in the output data frame
-for each rep. Useful for simulation studies where you want to
-check the results against some "true value" in the data. See the
-<code>mcmc_rep</code> vignette for an example.</p></td>
-    </tr>
-    <tr>
-      <th>data_omit</th>
-      <td><p>Elements of the data to omit from the JAGS model.
-Useful if you want to pass elements to <code>data_copy</code> without
-supplying them to the model. (Superfluous data causes warnings
-in JAGS.)</p></td>
+      <td><p>Code to generate the <code>data</code> list for the JAGS model.
+Optionally include a <code>.join_data</code> element to join parts of the data
+to correspondingly named parameters in the summary output.
+See the vignettes for details.</p></td>
     </tr>
     <tr>
       <th>variables</th>
@@ -397,7 +383,8 @@ the target builds on the host machine / process managing the pipeline.</p></td>
       <th>priority</th>
       <td><p>Numeric of length 1 between 0 and 1. Controls which
 targets get deployed first when multiple competing targets are ready
-simultaneously. Targets with priorities closer to 1 get built earlier.
+simultaneously. Targets with priorities closer to 1 get built earlier
+(and polled earlier in <code><a href='https://docs.ropensci.org/targets/reference/tar_make_future.html'>tar_make_future()</a></code>).
 Only applies to <code><a href='https://docs.ropensci.org/targets/reference/tar_make_future.html'>tar_make_future()</a></code> and <code><a href='https://docs.ropensci.org/targets/reference/tar_make_clustermq.html'>tar_make_clustermq()</a></code>
 (not <code><a href='https://docs.ropensci.org/targets/reference/tar_make.html'>tar_make()</a></code>). <code><a href='https://docs.ropensci.org/targets/reference/tar_make_future.html'>tar_make_future()</a></code> with no extra settings is
 a drop-in replacement for <code><a href='https://docs.ropensci.org/targets/reference/tar_make.html'>tar_make()</a></code> in this case.</p></td>
@@ -410,7 +397,10 @@ a drop-in replacement for <code><a href='https://docs.ropensci.org/targets/refer
 <li><p>Custom target-level <code>future::plan()</code>, e.g.
 <code>resources = list(plan = future.callr::callr)</code>.</p></li>
 <li><p>Custom <code>curl</code> handle if <code>format = "url"</code>,
-e.g. <code>resources = list(handle = curl::new_handle())</code>.</p></li>
+e.g. <code>resources = list(handle = curl::new_handle(nobody = TRUE))</code>.
+In custom handles, most users should manually set <code>nobody = TRUE</code>
+so <code>targets</code> does not download the entire file when it
+only needs to check the time stamp and ETag.</p></li>
 <li><p>Custom preset for <code><a href='https://rdrr.io/pkg/qs/man/qsave.html'>qs::qsave()</a></code> if <code>format = "qs"</code>, e.g.
 <code>resources = list(handle = "archive")</code>.</p></li>
 <li><p>Custom compression level for <code><a href='http://www.fstpackage.org/reference/write_fst.html'>fst::write_fst()</a></code> if
@@ -482,7 +472,7 @@ are forwarded to these functions.</p>
   <span class='fu'>tar_jags_rep_summary</span><span class='op'>(</span>
     <span class='va'>your_model</span>,
     jags_files <span class='op'>=</span> <span class='va'>tmp</span>,
-    data <span class='op'>=</span> <span class='fu'><a href='tar_jags_example_data.html'>tar_jags_example_data</a></span><span class='op'>(</span>true_params <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,
+    data <span class='op'>=</span> <span class='fu'><a href='tar_jags_example_data.html'>tar_jags_example_data</a></span><span class='op'>(</span><span class='op'>)</span>,
     parameters.to.save <span class='op'>=</span> <span class='st'>"beta"</span>,
     batches <span class='op'>=</span> <span class='fl'>2</span>,
     reps <span class='op'>=</span> <span class='fl'>2</span>,
@@ -492,13 +482,13 @@ are forwarded to these functions.</p>
 <span class='op'>}</span>, ask <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_make.html'>tar_make</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_batch
-#&gt; ● run target your_model_file_file8e228e05225
+</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_file_file88660b4b696
+#&gt; ● run target your_model_batch
+#&gt; ● run target your_model_lines_file88660b4b696
 #&gt; ● run branch your_model_data_7b1b1358
 #&gt; ● run branch your_model_data_7b6d503e
-#&gt; ● run target your_model_lines_file8e228e05225
-#&gt; ● run branch your_model_file8e228e05225_24769822
-#&gt; ● run branch your_model_file8e228e05225_4e151279
+#&gt; ● run branch your_model_file88660b4b696_24769822
+#&gt; ● run branch your_model_file88660b4b696_4e151279
 #&gt; ● run target your_model
 #&gt; ● end pipeline
 #&gt; </span><span></div></span></pre>

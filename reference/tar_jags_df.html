@@ -89,7 +89,7 @@ Exported for infrastructure reasons only." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">jagstargets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
       </span>
     </div>
 
@@ -152,6 +152,7 @@ Exported for infrastructure reasons only.</p>
 
     <pre class="usage"><span class='fu'>tar_jags_df</span><span class='op'>(</span>
   <span class='va'>fit</span>,
+  <span class='va'>data</span>,
   output <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"draws"</span>, <span class='st'>"summary"</span>, <span class='st'>"dic"</span><span class='op'>)</span>,
   variables <span class='op'>=</span> <span class='cn'>NULL</span>,
   summaries <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -164,6 +165,10 @@ Exported for infrastructure reasons only.</p>
     <tr>
       <th>fit</th>
       <td><p><code>R2jags</code> object.</p></td>
+    </tr>
+    <tr>
+      <th>data</th>
+      <td><p>A list, the original JAGS dataset.</p></td>
     </tr>
     <tr>
       <th>output</th>
