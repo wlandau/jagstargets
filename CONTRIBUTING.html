@@ -65,9 +65,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -141,29 +147,29 @@
 <div id="code-of-conduct" class="section level2">
 <h2 class="hasAnchor">
 <a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
-<p>By participating in this project, you agree to abide by the <a href="https://github.com/wlandau/jagstargets/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+<p>By participating in this project, you agree to abide by the <a href="https://github.com/wlandau/jagstargets/blob/main/CODE_OF_CONDUCT.md" class="external-link">code of conduct</a>.</p>
 </div>
 <div id="discussions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#discussions" class="anchor"></a>Discussions</h2>
-<p>At <a href="https://github.com/wlandau/jagstargets/discussions" class="uri">https://github.com/wlandau/jagstargets/discussions</a>, you can post general questions, brainstorm ideas, and ask for help.</p>
+<p>At <a href="https://github.com/wlandau/jagstargets/discussions" class="external-link uri">https://github.com/wlandau/jagstargets/discussions</a>, you can post general questions, brainstorm ideas, and ask for help.</p>
 </div>
 <div id="issues" class="section level2">
 <h2 class="hasAnchor">
 <a href="#issues" class="anchor"></a>Issues</h2>
-<p><a href="https://github.com/wlandau/jagstargets/issues" class="uri">https://github.com/wlandau/jagstargets/issues</a> is for bug reports, performance issues, maintenance tasks, and feature requests. When you post, please abide by the following guidelines.</p>
+<p><a href="https://github.com/wlandau/jagstargets/issues" class="external-link uri">https://github.com/wlandau/jagstargets/issues</a> is for bug reports, performance issues, maintenance tasks, and feature requests. When you post, please abide by the following guidelines.</p>
 <ul>
 <li>Before posting a new issue, please take a moment to search for existing similar issues in order to avoid duplication.</li>
-<li>For bug reports: if you can, please install the latest GitHub version of <code>jagstargets</code> (i.e. <code><a href="https://remotes.r-lib.org/reference/install_github.html">remotes::install_github("wlandau/jagstargets")</a></code>) and verify that the issue still persists.</li>
+<li>For bug reports: if you can, please install the latest GitHub version of <code>jagstargets</code> (i.e. <code><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">remotes::install_github("wlandau/jagstargets")</a></code>) and verify that the issue still persists.</li>
 <li>Describe your issue in prose as clearly and concisely as possible.</li>
-<li>For any problem you identify, post a <a href="https://www.tidyverse.org/help/">minimal reproducible example</a> like <a href="https://github.com/wlandau/targets/issues/256#issuecomment-754229683">this one</a> so the maintainer can troubleshoot. A reproducible example is:
+<li>For any problem you identify, post a <a href="https://www.tidyverse.org/help/" class="external-link">minimal reproducible example</a> like <a href="https://github.com/wlandau/targets/issues/256#issuecomment-754229683" class="external-link">this one</a> so the maintainer can troubleshoot. A reproducible example is:
 <ul>
 <li>
 <strong>Runnable</strong>: post enough R code and data so any onlooker can create the error on their own computer.</li>
 <li>
 <strong>Minimal</strong>: reduce runtime wherever possible and remove complicated details that are irrelevant to the issue at hand.</li>
 <li>
-<strong>Readable</strong>: format your code according to the <a href="https://style.tidyverse.org/">tidyverse style guide</a>.</li>
+<strong>Readable</strong>: format your code according to the <a href="https://style.tidyverse.org/" class="external-link">tidyverse style guide</a>.</li>
 </ul>
 </li>
 </ul>
@@ -173,10 +179,10 @@
 <a href="#development" class="anchor"></a>Development</h2>
 <p>External code contributions are extremely helpful in the right circumstances. Here are the recommended steps.</p>
 <ol style="list-style-type: decimal">
-<li>Prior to contribution, please propose your idea in a <a href="https://github.com/wlandau/jagstargets/issues">new issue thread</a> so you and the maintainer can define the intent and scope of your work.</li>
+<li>Prior to contribution, please propose your idea in a <a href="https://github.com/wlandau/jagstargets/issues" class="external-link">new issue thread</a> so you and the maintainer can define the intent and scope of your work.</li>
 <li>
-<a href="https://help.github.com/articles/fork-a-repo/">Fork the repository</a>.</li>
-<li>Follow the <a href="https://guides.github.com/introduction/flow/index.html">GitHub flow</a> to create a new branch, add commits, and open a pull request.</li>
+<a href="https://help.github.com/articles/fork-a-repo/" class="external-link">Fork the repository</a>.</li>
+<li>Follow the <a href="https://guides.github.com/introduction/flow/index.html" class="external-link">GitHub flow</a> to create a new branch, add commits, and open a pull request.</li>
 <li>Discuss your code with the maintainer in the pull request thread.</li>
 <li>If everything looks good, the maintainer will merge your code into the project.</li>
 </ol>
@@ -184,12 +190,12 @@
 <ul>
 <li>Respect the architecture and reasoning of the package. Depending on the scope of your work, you may want to read the design documents (package vignettes).</li>
 <li>If possible, keep contributions small enough to easily review manually. It is okay to split up your work into multiple pull requests.</li>
-<li>Format your code according to the <a href="https://style.tidyverse.org/">tidyverse style guide</a> and check your formatting with the <code>lint_package()</code> function from the <a href="https://github.com/jimhester/lintr"><code>lintr</code></a> package.</li>
+<li>Format your code according to the <a href="https://style.tidyverse.org/" class="external-link">tidyverse style guide</a> and check your formatting with the <code>lint_package()</code> function from the <a href="https://github.com/jimhester/lintr" class="external-link"><code>lintr</code></a> package.</li>
 <li>Check code coverage with <code>covr::package_coverage()</code>. Automated tests should cover all the new or changed functionality in your pull request.</li>
 <li>Run overall package checks with <code>devtools::check()</code> and <code>goodpractice::gp()</code>
 </li>
-<li>Describe your contribution in the project’s <a href="https://github.com/wlandau/jagstargets/blob/main/NEWS.md"><code>NEWS.md</code></a> file. Be sure to mention relevant GitHub issue numbers and your GitHub name as done in existing news entries.</li>
-<li>If you feel contribution is substantial enough for official author or contributor status, please add yourself to the <code>Authors@R</code> field of the <a href="https://github.com/wlandau/jagstargets/blob/main/DESCRIPTION"><code>DESCRIPTION</code></a> file.</li>
+<li>Describe your contribution in the project’s <a href="https://github.com/wlandau/jagstargets/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a> file. Be sure to mention relevant GitHub issue numbers and your GitHub name as done in existing news entries.</li>
+<li>If you feel contribution is substantial enough for official author or contributor status, please add yourself to the <code>Authors@R</code> field of the <a href="https://github.com/wlandau/jagstargets/blob/main/DESCRIPTION" class="external-link"><code>DESCRIPTION</code></a> file.</li>
 </ul>
 </div>
 </div>
@@ -208,11 +214,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by William Michael Landau.</p>
+  <p><p>Developed by William Michael Landau.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -220,6 +226,8 @@
 
   
 
+
+  
 
   </body>
 </html>
