@@ -150,8 +150,7 @@
     <span class="va">example</span>,
     jags_files <span class="op">=</span> <span class="st">"x.jags"</span>, <span class="co"># You provide this file.</span>
     parameters.to.save <span class="op">=</span> <span class="st">"beta"</span>,
-    data <span class="op">=</span> <span class="fu">generate_data</span><span class="op">(</span><span class="op">)</span>,
-    log <span class="op">=</span> <span class="fu">R.utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/R.utils/man/nullfile.html" class="external-link">nullfile</a></span><span class="op">(</span><span class="op">)</span>
+    data <span class="op">=</span> <span class="fu">generate_data</span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p>Run <a href="https://docs.ropensci.org/targets/reference/tar_visnetwork.html" class="external-link"><code>tar_visnetwork()</code></a> to check <code>_targets.R</code> for correctness, then call <a href="https://docs.ropensci.org/targets/reference/tar_make.html" class="external-link"><code>tar_make()</code></a> to run the pipeline. Access the results using <a href="https://docs.ropensci.org/targets/reference/tar_read.html" class="external-link"><code>tar_read()</code></a>, e.g. <code>tar_read(tar_read(example_summary_x)</code>. Visit <a href="https://wlandau.github.io/jagstargets/articles/mcmc.html" class="external-link">this vignette</a> to read more about this example.</p>

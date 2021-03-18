@@ -170,7 +170,8 @@
   RNGname <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Wichmann-Hill"</span>, <span class='st'>"Marsaglia-Multicarry"</span>, <span class='st'>"Super-Duper"</span>,
     <span class='st'>"Mersenne-Twister"</span><span class='op'>)</span>,
   jags.seed <span class='op'>=</span> <span class='fl'>1</span>,
-  log <span class='op'>=</span> <span class='cn'>NULL</span>,
+  stdout <span class='op'>=</span> <span class='cn'>NULL</span>,
+  stderr <span class='op'>=</span> <span class='cn'>NULL</span>,
   progress.bar <span class='op'>=</span> <span class='st'>"text"</span>,
   refresh <span class='op'>=</span> <span class='fl'>0</span>,
   tidy_eval <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"tidy_eval"</span><span class='op'>)</span>,
@@ -309,10 +310,17 @@ duplicates data.</p></td>
       <td><p>random seed for <code>JAGS</code>, default is 123.  This function is used for jags.parallell() and does not work for jags().  Use set.seed() instead if you want to produce identical result with jags()</p></td>
     </tr>
     <tr>
-      <th>log</th>
+      <th>stdout</th>
       <td><p>Character of length 1, file path to write the stdout stream
 of the model when it runs. Set to <code>NULL</code> to print to the console.
-Set to <code><a href='https://rdrr.io/pkg/R.utils/man/nullfile.html'>R.utils::nullfile()</a></code> to completely suppress all output.
+Set to <code><a href='https://rdrr.io/pkg/R.utils/man/nullfile.html'>R.utils::nullfile()</a></code> to suppress stdout.
+Does not apply to messages, warnings, or errors.</p></td>
+    </tr>
+    <tr>
+      <th>stderr</th>
+      <td><p>Character of length 1, file path to write the stderr stream
+of the model when it runs. Set to <code>NULL</code> to print to the console.
+Set to <code><a href='https://rdrr.io/pkg/R.utils/man/nullfile.html'>R.utils::nullfile()</a></code> to suppress stderr.
 Does not apply to messages, warnings, or errors.</p></td>
     </tr>
     <tr>

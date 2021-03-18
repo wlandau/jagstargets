@@ -161,7 +161,8 @@
   <span class='va'>jags.module</span>,
   <span class='va'>RNGname</span>,
   <span class='va'>jags.seed</span>,
-  <span class='va'>log</span>,
+  <span class='va'>stdout</span>,
+  <span class='va'>stderr</span>,
   <span class='va'>progress.bar</span>,
   <span class='va'>refresh</span>
 <span class='op'>)</span></pre>
@@ -236,10 +237,17 @@
       <td><p>random seed for <code>JAGS</code>, default is 123.  This function is used for jags.parallell() and does not work for jags().  Use set.seed() instead if you want to produce identical result with jags()</p></td>
     </tr>
     <tr>
-      <th>log</th>
+      <th>stdout</th>
       <td><p>Character of length 1, file path to write the stdout stream
 of the model when it runs. Set to <code>NULL</code> to print to the console.
-Set to <code><a href='https://rdrr.io/pkg/R.utils/man/nullfile.html'>R.utils::nullfile()</a></code> to completely suppress all output.
+Set to <code><a href='https://rdrr.io/pkg/R.utils/man/nullfile.html'>R.utils::nullfile()</a></code> to suppress stdout.
+Does not apply to messages, warnings, or errors.</p></td>
+    </tr>
+    <tr>
+      <th>stderr</th>
+      <td><p>Character of length 1, file path to write the stderr stream
+of the model when it runs. Set to <code>NULL</code> to print to the console.
+Set to <code><a href='https://rdrr.io/pkg/R.utils/man/nullfile.html'>R.utils::nullfile()</a></code> to suppress stderr.
 Does not apply to messages, warnings, or errors.</p></td>
     </tr>
     <tr>
