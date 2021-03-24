@@ -68,6 +68,9 @@ for each run." />
 
 
 
+<!-- dependencies from examples -->
+
+
   
 
   
@@ -391,6 +394,9 @@ so <code>targets</code> does not download the entire file when it
 only needs to check the time stamp and ETag.</p></li>
 <li><p>Custom preset for <code><a href='https://rdrr.io/pkg/qs/man/qsave.html'>qs::qsave()</a></code> if <code>format = "qs"</code>, e.g.
 <code>resources = list(handle = "archive")</code>.</p></li>
+<li><p>Arguments <code>compression</code> and <code>compression_level</code> to
+<code>arrow::write_feather()</code> and <code>arrow:write_parquet()</code> if <code>format</code> is
+<code>"feather"</code>, <code>"parquet"</code>, <code>"aws_feather"</code>, or <code>"aws_parquet"</code>.</p></li>
 <li><p>Custom compression level for <code><a href='http://www.fstpackage.org/reference/write_fst.html'>fst::write_fst()</a></code> if
 <code>format</code> is <code>"fst"</code>, <code>"fst_dt"</code>, or <code>"fst_tbl"</code>, e.g.
 <code>resources = list(compress = 100)</code>.</p></li>
@@ -471,13 +477,13 @@ are forwarded to these functions.</p>
 <span class='op'>}</span>, ask <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_make.html'>tar_make</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_file_file10e821acf5d9
-#&gt; ● run target your_model_batch
-#&gt; ● run target your_model_lines_file10e821acf5d9
+</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_batch
+#&gt; ● run target your_model_file_filedac59c7af70
 #&gt; ● run branch your_model_data_7b1b1358
 #&gt; ● run branch your_model_data_7b6d503e
-#&gt; ● run branch your_model_file10e821acf5d9_24769822
-#&gt; ● run branch your_model_file10e821acf5d9_4e151279
+#&gt; ● run target your_model_lines_filedac59c7af70
+#&gt; ● run branch your_model_filedac59c7af70_24769822
+#&gt; ● run branch your_model_filedac59c7af70_4e151279
 #&gt; ● end pipeline
 #&gt; </span><span></div></span></pre>
   </div>
@@ -495,7 +501,7 @@ are forwarded to these functions.</p>
 </div>
 
 <div class="pkgdown">
-  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
