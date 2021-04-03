@@ -132,7 +132,7 @@
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>First, write a <a href="https://books.ropensci.org/targets/walkthrough.html" class="external-link"><code>_targets.R</code> file</a> that loads your packages, defines a function to generate JAGS data, and lists a pipeline of targets. The target list can call target factories like <a href="https://wlandau.github.io/jagstargets/reference/tar_jags.html" class="external-link"><code>tar_jags()</code></a> as well as ordinary targets with <a href="https://docs.ropensci.org/targets/reference/tar_target.html" class="external-link"><code>tar_target()</code></a>.</p>
+<p>First, write a <a href="https://books.ropensci.org/targets/walkthrough.html" class="external-link"><code>_targets.R</code> file</a> that loads your packages, defines a function to generate JAGS data, and lists a pipeline of targets. The target list can call target factories like <a href="https://wlandau.github.io/jagstargets/reference/tar_jags.html" class="external-link"><code>tar_jags()</code></a> as well as ordinary targets with <a href="https://docs.ropensci.org/targets/reference/tar_target.html" class="external-link"><code>tar_target()</code></a>. The following minimal example is simple enough to contain entirely within the <code>_targets.R</code> file, but for larger projects, you may wish to store functions in separate files as in the <a href="https://github.com/wlandau/targets-keras" class="external-link"><code>targets-keras</code></a> example.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># _targets.R</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/targets/" class="external-link">targets</a></span><span class="op">)</span>
@@ -165,10 +165,6 @@
 <a href="#citation" class="anchor"></a>Citation</h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"jagstargets"</span><span class="op">)</span>
-<span class="co">#&gt; Warning in citation("jagstargets"): no date field in DESCRIPTION file of package</span>
-<span class="co">#&gt; 'jagstargets'</span>
-<span class="co">#&gt; Warning in citation("jagstargets"): could not determine year for 'jagstargets'</span>
-<span class="co">#&gt; from package DESCRIPTION file</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite package 'jagstargets' in publications use:</span>
 <span class="co">#&gt; </span>
