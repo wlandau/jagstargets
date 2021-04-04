@@ -451,28 +451,55 @@ rules that decide whether the target is up to date.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='tar_jags_rep_dic.html'>tar_jags_rep_dic(name = x, jags_files = "y.jags")</a></code>
-returns a list of <code><a href='https://docs.ropensci.org/targets/reference/tar_target.html'>targets::tar_target()</a></code> objects:</p><ul>
-<li><p><code>x_file_y</code>: reproducibly track the jags model file.</p></li>
-<li><p><code>x_lines_y</code>: contents of the jags model file.</p></li>
-<li><p><code>x_data</code>: dynamic branching target with simulated datasets.</p></li>
-<li><p><code>x_y</code>: dynamic branching target with tidy data frames of posterior
-summaries.</p></li>
-<li><p><code>x</code>: combine all the model-specific summary targets into
-a single data frame with columns to distinguish among the models.
-Suppressed if <code>combine</code> is <code>FALSE</code>.</p></li>
+    <p><code>tar_jags_rep_summary()</code> returns list of target objects.
+See the "Target objects" section for
+background.
+The target names use the <code>name</code> argument as a prefix, and the individual
+elements of <code>jags_files</code> appear in the suffixes where applicable.
+As an example, the specific target objects returned by
+<code><a href='tar_jags_rep_dic.html'>tar_jags_rep_dic(name = x, jags_files = "y.jags")</a></code>
+are as follows.</p><ul>
+<li><p><code>x_file_y</code>: reproducibly track the JAGS model file. Returns
+a character vector of length 1 with the path to the JAGS
+model file.</p></li>
+<li><p><code>x_lines_y</code>: read the contents of the JAGS model file
+for safe transport to parallel workers.
+Returns a character vector of lines in the model file.</p></li>
+<li><p><code>x_data</code>: use dynamic branching to generate multiple JAGS
+datasets from the R expression in the <code>data</code> argument.
+Each dynamic branch returns a batch of JAGS data lists.</p></li>
+<li><p><code>x_y</code>: run JAGS on each dataset from <code>x_data</code>.
+Each dynamic branch returns a tidy data frame of summaries
+for each batch of data.</p></li>
+<li><p><code>x</code>: combine all the batches from <code>x_y</code> into a non-dynamic target.
+Suppressed if <code>combine</code> is <code>FALSE</code>.
+Returns a long tidy data frame with all summaries
+from all the branches of <code>x_y</code>.</p></li>
 </ul>
 
-<p>Target objects represent skippable steps of the analysis pipeline
-as described at <a href='https://books.ropensci.org/targets/'>https://books.ropensci.org/targets/</a>.
-Please see the design specification at
-<a href='https://books.ropensci.org/targets-design/'>https://books.ropensci.org/targets-design/</a>
-to learn about the structure and composition of target objects.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The MCMC targets use <code><a href='https://rdrr.io/pkg/R2jags/man/jags.html'>R2jags::jags()</a></code> if <code>n.cluster</code> is <code>1</code> and
 <code><a href='https://rdrr.io/pkg/R2jags/man/jags.html'>R2jags::jags.parallel()</a></code> otherwise. Most arguments to <code><a href='tar_jags.html'>tar_jags()</a></code>
 are forwarded to these functions.</p>
+    <h2 class="hasAnchor" id="target-objects"><a class="anchor" href="#target-objects"></a>Target objects</h2>
+
+    
+
+<p>Most <code>stantargets</code> functions are target factories,
+which means they return target objects
+or lists of target objects.
+Target objects represent skippable steps of the analysis pipeline
+as described at <a href='https://books.ropensci.org/targets/'>https://books.ropensci.org/targets/</a>.
+Please read the walkthrough at
+<a href='https://books.ropensci.org/targets/walkthrough.html'>https://books.ropensci.org/targets/walkthrough.html</a>
+to understand the role of target objects in analysis pipelines.</p>
+<p>For developers,
+<a href='https://wlandau.github.io/targetopia/contributing.html#target-factories'>https://wlandau.github.io/targetopia/contributing.html#target-factories</a>
+explains target factories (functions like this one which generate targets)
+and the design specification at
+<a href='https://books.ropensci.org/targets-design/'>https://books.ropensci.org/targets-design/</a>
+details the structure and composition of target objects.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_dir.html'>tar_dir</a></span><span class='op'>(</span><span class='op'>{</span> <span class='co'># tar_dir() runs code from a temporary directory.</span>
@@ -497,13 +524,13 @@ are forwarded to these functions.</p>
 <span class='op'>}</span>, ask <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_make.html'>tar_make</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_file_filec2c196d2621
+</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_file_filec59543aafb6
 #&gt; ● run target your_model_batch
-#&gt; ● run target your_model_lines_filec2c196d2621
+#&gt; ● run target your_model_lines_filec59543aafb6
 #&gt; ● run branch your_model_data_7b1b1358
 #&gt; ● run branch your_model_data_7b6d503e
-#&gt; ● run branch your_model_filec2c196d2621_24769822
-#&gt; ● run branch your_model_filec2c196d2621_4e151279
+#&gt; ● run branch your_model_filec59543aafb6_24769822
+#&gt; ● run branch your_model_filec59543aafb6_4e151279
 #&gt; ● run target your_model
 #&gt; ● end pipeline
 #&gt; </span><span></div></span></pre>

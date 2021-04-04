@@ -442,19 +442,32 @@ rules that decide whether the target is up to date.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>tar_jags(name = x, jags_files = "y.jags", ...)</code> returns a list
+    <p><code>tar_jags()</code> returns list of target objects.
+See the "Target objects" section for
+background.
+The target names use the <code>name</code> argument as a prefix, and the individual
+elements of <code>jags_files</code> appear in the suffixes where applicable.
+As an example, the specific target objects returned by
+<code>tar_jags(name = x, jags_files = "y.jags", ...)</code> returns a list
 of <code><a href='https://docs.ropensci.org/targets/reference/tar_target.html'>targets::tar_target()</a></code> objects:</p><ul>
-<li><p><code>x_file_y</code>: reproducibly track the JAGS model file.</p></li>
-<li><p><code>x_lines_y</code>: contents of the JAGS model file.</p></li>
-<li><p><code>x_data</code>: data for the MCMC.</p></li>
-<li><p><code>x_mcmc_y</code>: <code>rjags</code> object from <code>R2jags</code> with all the MCMC results.</p></li>
-<li><p><code>x_draws_y</code>: tidy data frame of MCMC draws. Omitted if <code>draws = FALSE</code>.</p></li>
-<li><p><code>x_summary_y</code>: tidy data frame of MCMC summaries.
+<li><p><code>x_file_y</code>: reproducibly track the JAGS model file. Returns
+a character vector of length 1 with the path to the JAGS
+model file.</p></li>
+<li><p><code>x_lines_y</code>: read the contents of the JAGS model file
+for safe transport to parallel workers.
+Returns a character vector of lines in the model file.</p></li>
+<li><p><code>x_data</code>: run the R expression in the <code>data</code> argument to produce
+a JAGS dataset for the model. Returns a JAGS data list.</p></li>
+<li><p><code>x_mcmc_y</code>: run MCMC on the model and dataset.
+Returns an <code>rjags</code> object from <code>R2jags</code> with all the MCMC results.</p></li>
+<li><p><code>x_draws_y</code>: extract posterior samples from <code>x_mcmc_y</code>.
+Returns a tidy data frame of MCMC draws. Omitted if <code>draws = FALSE</code>.</p></li>
+<li><p><code>x_summary_y</code>: extract posterior summaries from <code>x_mcmc_y</code>.
+Returns a tidy data frame of MCMC draws.
 Omitted if <code>summary = FALSE</code>.</p></li>
-<li><p><code>x_dic</code>: tidy data frame of deviance information criterion (DIC) info.
-Omitted if <code>dic = FALSE</code>.
-If you supply multiple models, you will get more (model-specific) targets.
-All the models share the same dataset.</p></li>
+<li><p><code>x_dic</code>: extract deviance information criterion (DIC) info
+from <code>x_mcmc_y</code>. Returns a tidy data frame of DIC info.
+Omitted if <code>dic = FALSE</code>.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -462,6 +475,24 @@ All the models share the same dataset.</p></li>
     <p>The MCMC targets use <code><a href='https://rdrr.io/pkg/R2jags/man/jags.html'>R2jags::jags()</a></code> if <code>n.cluster</code> is <code>1</code> and
 <code><a href='https://rdrr.io/pkg/R2jags/man/jags.html'>R2jags::jags.parallel()</a></code> otherwise. Most arguments to <code>tar_jags()</code>
 are forwarded to these functions.</p>
+    <h2 class="hasAnchor" id="target-objects"><a class="anchor" href="#target-objects"></a>Target objects</h2>
+
+    
+
+<p>Most <code>stantargets</code> functions are target factories,
+which means they return target objects
+or lists of target objects.
+Target objects represent skippable steps of the analysis pipeline
+as described at <a href='https://books.ropensci.org/targets/'>https://books.ropensci.org/targets/</a>.
+Please read the walkthrough at
+<a href='https://books.ropensci.org/targets/walkthrough.html'>https://books.ropensci.org/targets/walkthrough.html</a>
+to understand the role of target objects in analysis pipelines.</p>
+<p>For developers,
+<a href='https://wlandau.github.io/targetopia/contributing.html#target-factories'>https://wlandau.github.io/targetopia/contributing.html#target-factories</a>
+explains target factories (functions like this one which generate targets)
+and the design specification at
+<a href='https://books.ropensci.org/targets-design/'>https://books.ropensci.org/targets-design/</a>
+details the structure and composition of target objects.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_dir.html'>tar_dir</a></span><span class='op'>(</span><span class='op'>{</span> <span class='co'># tar_dir() runs code from a temporary directory.</span>
@@ -484,13 +515,13 @@ are forwarded to these functions.</p>
 <span class='op'>}</span>, ask <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_make.html'>tar_make</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_file_filebf53bacdeae
-#&gt; ● run target your_model_data
-#&gt; ● run target your_model_lines_filebf53bacdeae
-#&gt; ● run target your_model_mcmc_filebf53bacdeae
-#&gt; ● run target your_model_summary_filebf53bacdeae
-#&gt; ● run target your_model_draws_filebf53bacdeae
-#&gt; ● run target your_model_dic_filebf53bacdeae
+</div><div class='output co'>#&gt; <span style='color: #BB0000;'>● run target your_model_data
+#&gt; ● run target your_model_file_filec227845af81
+#&gt; ● run target your_model_lines_filec227845af81
+#&gt; ● run target your_model_mcmc_filec227845af81
+#&gt; ● run target your_model_summary_filec227845af81
+#&gt; ● run target your_model_dic_filec227845af81
+#&gt; ● run target your_model_draws_filec227845af81
 #&gt; ● end pipeline
 #&gt; </span><span></div></span></pre>
   </div>
