@@ -107,6 +107,11 @@
 </h1></div>
 
 <p>The <code>jagstargets</code> R package is an extension to <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> and <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> for Bayesian data analysis. <code>jagstargets</code> makes it super easy to set up useful scalable JAGS pipelines that automatically parallelize the computation and skip expensive steps when the results are already up to date. Minimal custom code is required, and there is no need to manually configure branching, so usage is much easier than <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> alone.</p>
+<div id="how-it-works" class="section level2">
+<h2 class="hasAnchor">
+<a href="#how-it-works" class="anchor"></a>How it works</h2>
+<p><code>jagstargets</code> supports specialized <a href="https://ropensci.org/blog/2021/02/03/targets/#target-factories" class="external-link">target factories</a> that create ensembles of <a href="https://docs.ropensci.org/targets/reference/tar_target.html" class="external-link">target objects</a> for <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> workflows. These <a href="https://ropensci.org/blog/2021/02/03/targets/#target-factories" class="external-link">target factories</a> abstract away the details of <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> and <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> and make both packages easier to use. For details, please read the <a href="https://wlandau.github.io/jagstargets/articles/mcmc.html" class="external-link">vignette on non-branching MCMC pipelines</a>.</p>
+</div>
 <div id="prerequisites" class="section level2">
 <h2 class="hasAnchor">
 <a href="#prerequisites" class="anchor"></a>Prerequisites</h2>
@@ -154,6 +159,11 @@
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p>Run <a href="https://docs.ropensci.org/targets/reference/tar_visnetwork.html" class="external-link"><code>tar_visnetwork()</code></a> to check <code>_targets.R</code> for correctness, then call <a href="https://docs.ropensci.org/targets/reference/tar_make.html" class="external-link"><code>tar_make()</code></a> to run the pipeline. Access the results using <a href="https://docs.ropensci.org/targets/reference/tar_read.html" class="external-link"><code>tar_read()</code></a>, e.g. <code>tar_read(tar_read(example_summary_x)</code>. Visit <a href="https://wlandau.github.io/jagstargets/articles/mcmc.html" class="external-link">this vignette</a> to read more about this example.</p>
+</div>
+<div id="help" class="section level2">
+<h2 class="hasAnchor">
+<a href="#help" class="anchor"></a>Help</h2>
+<p>If you have trouble using <code>jagstargets</code>, you can ask for help in the <a href="https://github.com/wlandau/jagstargets/discussions/categories/help" class="external-link">GitHub discussions forum</a>. Because the purpose of <code>jagstargets</code> is to combine <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> and <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a>, your issue may have something to do with one of the latter two packages, a <a href="https://github.com/ropensci/targets/blob/4e3ef2a6c986f558a25e544416f480fc01236b6b/DESCRIPTION#L49-L88" class="external-link">dependency of <code>targets</code></a>, or <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> itself. When you troubleshoot, peel back as many layers as possible to isolate the problem. For example, if the issue comes from <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a>, create a <a href="https://reprex.tidyverse.org" class="external-link">reproducible example</a> that directly invokes <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> without invoking <code>jagstargets</code>. The GitHub discussion and issue forums of those packages are great resources.</p>
 </div>
 <div id="participation" class="section level2">
 <h2 class="hasAnchor">
