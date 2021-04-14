@@ -359,7 +359,11 @@ when loading <code>packages</code>.</p></td>
       <td><p>Character of length 1, what to do if the target
 runs into an error. If <code>"stop"</code>, the whole pipeline stops
 and throws an error. If <code>"continue"</code>, the error is recorded,
-but the pipeline keeps going.</p></td>
+but the pipeline keeps going. <code>error = "workspace"</code> is just like
+<code>error = "stop"</code> except <code>targets</code> saves a special workspace file
+to support interactive debugging outside the pipeline.
+(Visit <a href='https://books.ropensci.org/targets/debugging.html'>https://books.ropensci.org/targets/debugging.html</a>
+to learn how to debug targets using saved workspaces.)</p></td>
     </tr>
     <tr>
       <th>memory</th>
