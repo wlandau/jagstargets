@@ -103,18 +103,18 @@
   <div class="contents col-md-9">
 <div id="jagstargets-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#jagstargets-" class="anchor"></a>jagstargets <img src="reference/figures/logo.png" align="right" height="139">
+<a href="#jagstargets-" class="anchor" aria-hidden="true"></a>jagstargets <img src="reference/figures/logo.png" align="right" height="139">
 </h1></div>
 
 <p>The <code>jagstargets</code> R package is an extension to <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> and <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> for Bayesian data analysis. <code>jagstargets</code> makes it super easy to set up useful scalable JAGS pipelines that automatically parallelize the computation and skip expensive steps when the results are already up to date. Minimal custom code is required, and there is no need to manually configure branching, so usage is much easier than <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> alone.</p>
 <div id="how-it-works" class="section level2">
 <h2 class="hasAnchor">
-<a href="#how-it-works" class="anchor"></a>How it works</h2>
+<a href="#how-it-works" class="anchor" aria-hidden="true"></a>How it works</h2>
 <p><code>jagstargets</code> supports specialized <a href="https://ropensci.org/blog/2021/02/03/targets/#target-factories" class="external-link">target factories</a> that create ensembles of <a href="https://docs.ropensci.org/targets/reference/tar_target.html" class="external-link">target objects</a> for <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> workflows. These <a href="https://ropensci.org/blog/2021/02/03/targets/#target-factories" class="external-link">target factories</a> abstract away the details of <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> and <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> and make both packages easier to use. For details, please read the <a href="https://wlandau.github.io/jagstargets/articles/mcmc.html" class="external-link">vignette on non-branching MCMC pipelines</a>.</p>
 </div>
 <div id="prerequisites" class="section level2">
 <h2 class="hasAnchor">
-<a href="#prerequisites" class="anchor"></a>Prerequisites</h2>
+<a href="#prerequisites" class="anchor" aria-hidden="true"></a>Prerequisites</h2>
 <ol style="list-style-type: decimal">
 <li>The <a href="https://docs.ropensci.org/targets/#prerequisites" class="external-link">prerequisites of the <code>targets</code> R package</a>.</li>
 <li>Basic familiarity with <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a>: watch minutes 7 through 40 of <a href="https://youtu.be/Gqn7Xn4d5NI?t=439" class="external-link">this video</a>, then read <a href="https://books.ropensci.org/targets/walkthrough.html" class="external-link">this chapter</a> of the <a href="https://books.ropensci.org/targets/" class="external-link">user manual</a>.</li>
@@ -123,12 +123,12 @@
 </div>
 <div id="how-to-get-started" class="section level2">
 <h2 class="hasAnchor">
-<a href="#how-to-get-started" class="anchor"></a>How to get started</h2>
+<a href="#how-to-get-started" class="anchor" aria-hidden="true"></a>How to get started</h2>
 <p>Read the <code>jagstargets</code> tutorial vignettes <a href="https://wlandau.github.io/jagstargets/articles/mcmc.html" class="external-link">here</a> and <a href="https://wlandau.github.io/jagstargets/articles/mcmc_rep.html" class="external-link">here</a>, then use <a href="https://wlandau.github.io/jagstargets/" class="external-link uri">https://wlandau.github.io/jagstargets/</a> as a reference while constructing your own workflows.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
 <p>Install the GitHub development version to access the latest features and patches.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"wlandau/jagstargets"</span><span class="op">)</span></code></pre></div>
@@ -136,7 +136,7 @@
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<a href="#usage" class="anchor" aria-hidden="true"></a>Usage</h2>
 <p>First, write a <a href="https://books.ropensci.org/targets/walkthrough.html" class="external-link"><code>_targets.R</code> file</a> that loads your packages, defines a function to generate JAGS data, and lists a pipeline of targets. The target list can call target factories like <a href="https://wlandau.github.io/jagstargets/reference/tar_jags.html" class="external-link"><code>tar_jags()</code></a> as well as ordinary targets with <a href="https://docs.ropensci.org/targets/reference/tar_target.html" class="external-link"><code>tar_target()</code></a>. The following minimal example is simple enough to contain entirely within the <code>_targets.R</code> file, but for larger projects, you may wish to store functions in separate files as in the <a href="https://github.com/wlandau/targets-keras" class="external-link"><code>targets-keras</code></a> example.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># _targets.R</span>
@@ -162,17 +162,17 @@
 </div>
 <div id="help" class="section level2">
 <h2 class="hasAnchor">
-<a href="#help" class="anchor"></a>Help</h2>
+<a href="#help" class="anchor" aria-hidden="true"></a>Help</h2>
 <p>If you have trouble using <code>jagstargets</code>, you can ask for help in the <a href="https://github.com/wlandau/jagstargets/discussions/categories/help" class="external-link">GitHub discussions forum</a>. Because the purpose of <code>jagstargets</code> is to combine <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> and <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a>, your issue may have something to do with one of the latter two packages, a <a href="https://github.com/ropensci/targets/blob/4e3ef2a6c986f558a25e544416f480fc01236b6b/DESCRIPTION#L49-L88" class="external-link">dependency of <code>targets</code></a>, or <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> itself. When you troubleshoot, peel back as many layers as possible to isolate the problem. For example, if the issue comes from <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a>, create a <a href="https://reprex.tidyverse.org" class="external-link">reproducible example</a> that directly invokes <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> without invoking <code>jagstargets</code>. The GitHub discussion and issue forums of those packages are great resources.</p>
 </div>
 <div id="participation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#participation" class="anchor"></a>Participation</h2>
+<a href="#participation" class="anchor" aria-hidden="true"></a>Participation</h2>
 <p>Development is a community effort, and we welcome discussion and contribution. By participating in this project, you agree to abide by the <a href="https://github.com/wlandau/jagstargets/blob/main/CODE_OF_CONDUCT.md" class="external-link">code of conduct</a> and the <a href="https://github.com/wlandau/jagstargets/blob/main/CONTRIBUTING.md" class="external-link">contributing guide</a>.</p>
 </div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#citation" class="anchor"></a>Citation</h2>
+<a href="#citation" class="anchor" aria-hidden="true"></a>Citation</h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"jagstargets"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
