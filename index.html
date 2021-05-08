@@ -19,10 +19,11 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Targets for JAGS Workflows">
 <meta property="og:description" content="Bayesian data analysis usually incurs long runtimes
-  and cumbersome custom code. A pipeline toolkit tailored to Bayesians,
+  and cumbersome custom code.
+  A pipeline toolkit tailored to Bayesian statisticians,
   the jagstargets R package is leverages
   targets and R2jags to ease this burden.
-  jagstargets makes it super easy to set up useful scalable
+  jagstargets makes it super easy to set up scalable
   JAGS pipelines that automatically parallelize the computation
   and skip expensive steps when the results are already up to date.
   Minimal custom code is required, and there is no need to manually
@@ -106,12 +107,7 @@
 <a href="#jagstargets-" class="anchor" aria-hidden="true"></a>jagstargets <img src="reference/figures/logo.png" align="right" height="139">
 </h1></div>
 
-<p>The <code>jagstargets</code> R package is an extension to <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> and <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> for Bayesian data analysis. <code>jagstargets</code> makes it super easy to set up useful scalable JAGS pipelines that automatically parallelize the computation and skip expensive steps when the results are already up to date. Minimal custom code is required, and there is no need to manually configure branching, so usage is much easier than <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> alone.</p>
-<div id="how-it-works" class="section level2">
-<h2 class="hasAnchor">
-<a href="#how-it-works" class="anchor" aria-hidden="true"></a>How it works</h2>
-<p><code>jagstargets</code> supports specialized <a href="https://ropensci.org/blog/2021/02/03/targets/#target-factories" class="external-link">target factories</a> that create ensembles of <a href="https://docs.ropensci.org/targets/reference/tar_target.html" class="external-link">target objects</a> for <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> workflows. These <a href="https://ropensci.org/blog/2021/02/03/targets/#target-factories" class="external-link">target factories</a> abstract away the details of <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> and <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> and make both packages easier to use. For details, please read the <a href="https://wlandau.github.io/jagstargets/articles/mcmc.html" class="external-link">vignette on non-branching MCMC pipelines</a>.</p>
-</div>
+<p>Bayesian data analysis usually incurs long runtimes and cumbersome custom code, and the process of prototyping and deploying custom <a href="https://mcmc-jags.sourceforge.io" class="external-link">JAGS</a> models can become a daunting software engineering challenge. To ease this burden, the <code>jagstargets</code> R package creates <a href="https://mcmc-jags.sourceforge.io" class="external-link">JAGS</a> pipelines that are concise, efficient, scalable, and tailored to the needs of Bayesian statisticians. Leveraging <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a>, <code>jagstargets</code> pipelines automatically parallelize the computation and skip expensive steps when the results are already up to date. Minimal custom user-side code is required, and there is no need to manually configure branching, so <code>jagstargets</code> is easier to use than <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> and <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> directly.</p>
 <div id="prerequisites" class="section level2">
 <h2 class="hasAnchor">
 <a href="#prerequisites" class="anchor" aria-hidden="true"></a>Prerequisites</h2>
@@ -159,6 +155,11 @@
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p>Run <a href="https://docs.ropensci.org/targets/reference/tar_visnetwork.html" class="external-link"><code>tar_visnetwork()</code></a> to check <code>_targets.R</code> for correctness, then call <a href="https://docs.ropensci.org/targets/reference/tar_make.html" class="external-link"><code>tar_make()</code></a> to run the pipeline. Access the results using <a href="https://docs.ropensci.org/targets/reference/tar_read.html" class="external-link"><code>tar_read()</code></a>, e.g. <code>tar_read(tar_read(example_summary_x)</code>. Visit <a href="https://wlandau.github.io/jagstargets/articles/mcmc.html" class="external-link">this vignette</a> to read more about this example.</p>
+</div>
+<div id="how-the-package-works" class="section level2">
+<h2 class="hasAnchor">
+<a href="#how-the-package-works" class="anchor" aria-hidden="true"></a>How the package works</h2>
+<p><code>jagstargets</code> supports specialized <a href="https://ropensci.org/blog/2021/02/03/targets/#target-factories" class="external-link">target factories</a> that create ensembles of <a href="https://docs.ropensci.org/targets/reference/tar_target.html" class="external-link">target objects</a> for <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> workflows. These <a href="https://ropensci.org/blog/2021/02/03/targets/#target-factories" class="external-link">target factories</a> abstract away the details of <a href="https://docs.ropensci.org/targets/" class="external-link"><code>targets</code></a> and <a href="https://CRAN.R-project.org/package=R2jags" class="external-link"><code>R2jags</code></a> and make both packages easier to use. For details, please read the <a href="https://wlandau.github.io/jagstargets/articles/mcmc.html" class="external-link">vignette on non-branching MCMC pipelines</a>.</p>
 </div>
 <div id="help" class="section level2">
 <h2 class="hasAnchor">
