@@ -1,8 +1,8 @@
 pandoc: 2.7.3
 pkgdown: 1.6.1.9001
-pkgdown_sha: 5051be01ee75042520b523410ff5dc31e9b46256
+pkgdown_sha: aae5ce1adce646d180f29ede23210ef13527ac7c
 articles:
   mcmc: mcmc.html
   mcmc_rep: mcmc_rep.html
-last_built: 2021-05-06T14:19Z
+last_built: 2021-05-08T19:45Z
 
