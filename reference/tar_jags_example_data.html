@@ -193,6 +193,16 @@ and prior predictive data <code>y</code> (numeric vector).</p></li>
 element so the true value of <code>beta</code> from the simulation
 is automatically appended to the <code>beta</code> rows of the
 summary output.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The <code>tar_jags_example_data()</code> function draws a JAGS
+dataset from the prior predictive distribution of the
+model from <code><a href='tar_jags_example_file.html'>tar_jags_example_file()</a></code>. First, the
+regression coefficient <code>beta</code> is drawn from its standard
+normal prior, and the covariate <code>x</code> is computed.
+Then, conditional on the <code>beta</code> draws and the covariate,
+the response vector <code>y</code> is drawn from its
+Normal(<code>x * beta</code>, 1) likelihood.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='r-in'><span class='fu'>tar_jags_example_data</span><span class='op'>(</span><span class='op'>)</span></span>
