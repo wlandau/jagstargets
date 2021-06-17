@@ -66,7 +66,6 @@
 
 
 
-
   
 
   
@@ -97,7 +96,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -123,7 +122,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/wlandau/jagstargets">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -423,29 +422,11 @@ simultaneously. Targets with priorities closer to 1 get built earlier
     </tr>
     <tr>
       <th>resources</th>
-      <td><p>A named list of computing resources. Uses:</p><ul>
-<li><p>Template file wildcards for <code>future::future()</code> in <code><a href='https://docs.ropensci.org/targets/reference/tar_make_future.html'>tar_make_future()</a></code>.</p></li>
-<li><p>Template file wildcards <code>clustermq::workers()</code> in <code><a href='https://docs.ropensci.org/targets/reference/tar_make_clustermq.html'>tar_make_clustermq()</a></code>.</p></li>
-<li><p>Custom target-level <code>future::plan()</code>, e.g.
-<code>resources = list(plan = future.callr::callr)</code>.</p></li>
-<li><p>Custom <code>curl</code> handle if <code>format = "url"</code>,
-e.g. <code>resources = list(handle = curl::new_handle(nobody = TRUE))</code>.
-In custom handles, most users should manually set <code>nobody = TRUE</code>
-so <code>targets</code> does not download the entire file when it
-only needs to check the time stamp and ETag.</p></li>
-<li><p>Custom preset for <code><a href='https://rdrr.io/pkg/qs/man/qsave.html'>qs::qsave()</a></code> if <code>format = "qs"</code>, e.g.
-<code>resources = list(handle = "archive")</code>.</p></li>
-<li><p>Arguments <code>compression</code> and <code>compression_level</code> to
-<code>arrow::write_feather()</code> and <code>arrow:write_parquet()</code> if <code>format</code> is
-<code>"feather"</code>, <code>"parquet"</code>, <code>"aws_feather"</code>, or <code>"aws_parquet"</code>.</p></li>
-<li><p>Custom compression level for <code><a href='http://www.fstpackage.org/reference/write_fst.html'>fst::write_fst()</a></code> if
-<code>format</code> is <code>"fst"</code>, <code>"fst_dt"</code>, or <code>"fst_tbl"</code>, e.g.
-<code>resources = list(compress = 100)</code>.</p></li>
-<li><p>AWS bucket and prefix for the <code>"aws_"</code> formats, e.g.
-<code>resources = list(bucket = "your-bucket", prefix = "folder/name")</code>.
-<code>bucket</code> is required for AWS formats. See the cloud computing chapter
-of the manual for details.</p></li>
-</ul></td>
+      <td><p>Object returned by <code><a href='https://docs.ropensci.org/targets/reference/tar_resources.html'>tar_resources()</a></code>
+with optional settings for high-performance computing
+functionality, alternative data storage formats,
+and other optional capabilities of <code>targets</code>.
+See <code><a href='https://docs.ropensci.org/targets/reference/tar_resources.html'>tar_resources()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>storage</th>
